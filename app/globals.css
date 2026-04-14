@@ -94,7 +94,7 @@ body {
 
 /* ─── Section Padding ─── */
 .section-padding {
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.25rem;
 }
 
 @media (min-width: 768px) {

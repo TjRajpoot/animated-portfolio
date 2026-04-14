@@ -173,10 +173,10 @@ export default function SkillsSection() {
       className="relative h-screen w-screen shrink-0"
     >
       <div
-        className="h-full w-full flex items-center"
-        style={{ paddingLeft: "4rem", paddingRight: "2rem" }}
+        className="h-full w-full flex items-center overflow-y-auto"
+        style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)", paddingRight: "clamp(1.25rem, 3vw, 2rem)" }}
       >
-        <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-24 py-16 lg:py-0">
 
           {/* Left Column — Heading */}
           <div className="w-full lg:w-2/5 flex flex-col justify-center shrink-0">
@@ -184,7 +184,7 @@ export default function SkillsSection() {
               Skills &amp; Tools
             </p>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               The stack behind{" "}
               <span className="text-accent">fast builds</span>
             </h2>

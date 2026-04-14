@@ -19,7 +19,7 @@ export default function AboutSection() {
     <section
       id="about"
       className="section-padding relative bg-transparent"
-      style={{ paddingLeft: "4rem" }}
+      style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)" }}
       data-about
     >
       <div className="max-w-6xl mx-auto">
@@ -70,9 +70,9 @@ export default function AboutSection() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="p-16 rounded-3xl border border-white/10 bg-white/5 text-center  backdrop-blur-md hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
+                className="p-6 md:p-10 rounded-3xl border border-white/10 bg-white/5 text-center backdrop-blur-md hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
               >
-                <p className="text-2xl md:text-3xl font-bold text-accent m-20">
+                <p className="text-2xl md:text-3xl font-bold text-accent mb-2">
                   {stat.value}
                 </p>
                 <p className="text-sm text-muted mt-1">

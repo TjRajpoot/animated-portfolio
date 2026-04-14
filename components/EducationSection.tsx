@@ -57,8 +57,12 @@ const fadeUp = {
 
 export default function EducationSection() {
   return (
-    <section id="education" className="w-screen h-screen flex-shrink-0 section-padding flex flex-col justify-center overflow-auto snap-center relative">
-      <div className="max-w-5xl mx-auto">
+    <section id="education" className="w-screen h-screen flex-shrink-0 relative">
+      <div 
+        className="h-full w-full flex flex-col justify-center overflow-y-auto"
+        style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)", paddingRight: "clamp(1.25rem, 5vw, 4rem)", paddingTop: "4rem", paddingBottom: "4rem" }}
+      >
+      <div className="max-w-5xl w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -68,12 +72,12 @@ export default function EducationSection() {
           className="mb-14"
         >
           <p className="lime-badge mb-6 w-fit">Education</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
             Academic background
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Education Column */}
           <motion.div
             initial="hidden"
@@ -162,6 +166,7 @@ export default function EducationSection() {
             </div>
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   );

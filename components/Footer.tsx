@@ -5,8 +5,8 @@
  */
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-8 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6">
+      <div className="max-w-5xl mx-auto flex flex-col items-center gap-3 md:flex-row md:justify-between md:gap-4">
         {/* Logo */}
         <span className="text-sm font-bold text-accent"
           onClick={() => window.scrollTo({ top: 0, behavior: "auto" })}

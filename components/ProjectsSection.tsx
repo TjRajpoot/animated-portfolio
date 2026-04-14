@@ -222,30 +222,29 @@ export default function ProjectsSection() {
             style={{ transformStyle: "preserve-3d" }}
           >
             <div
-              className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
-              style={{ paddingLeft: "4rem", paddingRight: "4rem" }}
+              className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-20"
+              style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)", paddingRight: "clamp(1.25rem, 5vw, 4rem)" }}
             >
               {/* Left Column - Text Content */}
               <div className="w-full lg:w-1/2">
                 {/* Project number */}
-                <p className="text-accent/25 text-xs font-mono tracking-[0.3em] uppercase mb-7">
+                <p className="text-accent/25 text-[10px] md:text-xs font-mono tracking-[0.3em] uppercase mb-4 md:mb-7">
                   Project 0{project.id} / 0{PROJECTS.length}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
+                <h3 className="text-2xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-4 md:mb-6">
                   {project.title}
                 </h3>
                 <a href={project.link} target="_blank" className="text-accent px-4 py-2 text-xs font-mono hover:text-white hover:font-bold">Visit live</a>
-                <br />
+
                 {/* Description */}
-                <p className="text-white/50 text-base md:text-xl leading-relaxed mb-8 max-w-2xl">
+                <p className="text-white/50 text-sm md:text-xl leading-relaxed mb-4 md:mb-8 max-w-2xl mt-3">
                   {project.description}
                 </p>
-                <br />
 
                 {/* Bullet highlights */}
-                <ul className="space-y-2 mb-10">
+                <ul className="space-y-1.5 md:space-y-2 mb-6 md:mb-10 hidden md:block">
                   {project.bullets.map((bullet) => (
                     <li
                       key={bullet}
@@ -256,7 +255,7 @@ export default function ProjectsSection() {
                     </li>
                   ))}
                 </ul>
-                <br />
+
                 {/* Tech stack */}
                 <div className="flex flex-wrap gap-3">
                   {project.tech.map((t) => (
@@ -270,8 +269,8 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Right Column - Image */}
-              <div className="w-full lg:w-1/2 h-[300px] md:h-[400px] lg:h-[500px] relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(191,255,0,0.05)] opacity-90 group transition-all duration-500 hover:opacity-100 hover:shadow-[0_0_60px_rgba(191,255,0,0.1)]">
+              {/* Right Column - Image (hidden on mobile to prevent overflow) */}
+              <div className="hidden lg:block w-full lg:w-1/2 h-[300px] md:h-[400px] lg:h-[500px] relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(191,255,0,0.05)] opacity-90 group transition-all duration-500 hover:opacity-100 hover:shadow-[0_0_60px_rgba(191,255,0,0.1)]">
                 <div className="absolute inset-0 bg-accent/10 z-10 group-hover:bg-transparent transition-colors duration-500" />
                 <img
                   src={project.image}
@@ -286,7 +285,7 @@ export default function ProjectsSection() {
       </div>
 
       {/* Right progress dots */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-50">
+      <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 md:gap-4 z-50">
         {PROJECTS.map((_, i) => (
           <div
             key={i}
@@ -309,12 +308,12 @@ export default function ProjectsSection() {
 
       {/* Bottom-left counter */}
       <div
-        className="absolute bottom-10 left-0 z-50 flex items-baseline gap-2"
-        style={{ paddingLeft: "4rem" }}
+        className="absolute bottom-6 md:bottom-10 left-0 z-50 flex items-baseline gap-2"
+        style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)" }}
       >
         <span
           ref={counterRef}
-          className="text-5xl font-bold text-accent/70 tabular-nums"
+          className="text-3xl md:text-5xl font-bold text-accent/70 tabular-nums"
         >
           01
         </span>

@@ -54,7 +54,7 @@ export default function ContactSection() {
     <section id="contact" className="relative h-screen w-screen shrink-0">
       <div
         className="h-full w-full flex items-center overflow-y-auto"
-        style={{ paddingLeft: "4rem", paddingRight: "4rem" }}
+        style={{ paddingLeft: "clamp(1.25rem, 5vw, 4rem)", paddingRight: "clamp(1.25rem, 5vw, 4rem)" }}
       >
         <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center py-20 pb-24">
 
@@ -68,7 +68,7 @@ export default function ContactSection() {
             >
               <p className="lime-badge mb-6 w-fit lg:mx-0 mx-auto">Get In Touch</p>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-2xl md:text-5xl font-bold mb-4">
                 Let&apos;s work together
               </h2>
 
@@ -78,31 +78,31 @@ export default function ContactSection() {
             </motion.div>
 
             {/* CONTACT CARDS */}
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-3 md:gap-5">
               {LINKS.map((link) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   target="_blank"
-                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5 }}
-                  className="relative p-5 rounded-2xl border border-border bg-surface 
+                  whileHover={{ scale: 1.05 }}
+                  className="relative p-3 md:p-5 rounded-2xl border border-border bg-surface 
                 transition-all duration-500 hover:border-accent/40 
                 hover:shadow-[0_10px_40px_rgba(0,255,150,0.15)]"
                 >
-                  <div className="text-2xl mb-2">{link.icon}</div>
-                  <p className="font-semibold">{link.name}</p>
-                  <p className="text-xs text-muted">{link.description}</p>
+                  <div className="text-xl md:text-2xl mb-2">{link.icon}</div>
+                  <p className="font-semibold text-sm md:text-base">{link.name}</p>
+                  <p className="text-[10px] md:text-xs text-muted">{link.description}</p>
                 </motion.a>
               ))}
             </div>
           </div>
 
-          {/* RIGHT SIDE IMAGE */}
+          {/* RIGHT SIDE IMAGE (hidden on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative flex justify-center"
+            className="relative hidden lg:flex justify-center"
           >
             {/* GLOW BACKGROUND */}
             <div className="absolute w-100 h-100 bg-accent/20 blur-3xl rounded-full" />
