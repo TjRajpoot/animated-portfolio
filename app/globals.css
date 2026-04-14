@@ -1,26 +1,212 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Lime Theme Design System ─── */
+@theme {
+  --color-background: #050505;
+  --color-foreground: #ededed;
+  --color-muted: #888888;
+  --color-accent: #BFFF00;
+  --color-accent-light: #D4FF4D;
+  --color-accent-dim: #8AE600;
+  --color-surface: #0e0e0e;
+  --color-surface-light: #161616;
+  --color-border: #1e1e1e;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base Resets ─── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ─── Selection Color ─── */
+::selection {
+  background: rgba(191, 255, 0, 0.25);
+  color: #ffffff;
+}
+
+/* ─── Scrollbar (Webkit) ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* ─── Utility: Glass Effect ─── */
+.glass {
+  background: rgba(14, 14, 14, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Utility: Gradient Text (Lime) ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #BFFF00 0%, #8AE600 50%, #66CC00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Utility: Glow Effect ─── */
+.glow {
+  box-shadow: 0 0 20px rgba(191, 255, 0, 0.1),
+              0 0 60px rgba(191, 255, 0, 0.03);
+}
+
+/* ─── Utility: Lime Badge ─── */
+.lime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(191, 255, 0, 0.08);
+  color: #BFFF00;
+  border: 1px solid rgba(191, 255, 0, 0.12);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Section Padding ─── */
+.section-padding {
+  padding: 5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 7rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 4rem;
+  }
+}
+
+/* ─── Text Reveal Hero ─── */
+.text-reveal-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.reveal-text {
+  font-size: clamp(5rem, 20vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  background-color: #ededed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: transform;
+  user-select: none;
+  z-index: 2;
+  position: relative;
+  font-family: var(--font-sans);
+}
+
+.lime-overlay {
+  position: absolute;
+  inset: 0;
+  background: #BFFF00;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.reveal-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reveal-role {
+  font-size: clamp(1.25rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: #050505;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.reveal-divider {
+  width: 50px;
+  height: 2px;
+  background: #050505;
+  border-radius: 2px;
+  margin: 1rem 0;
+  opacity: 0.3;
+}
+
+.reveal-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #050505;
+  opacity: 0.45;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ─── Hero ↔ About layered scroll wrapper ─── */
+.hero-about-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.hero-about-wrapper > *:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  will-change: opacity;
+}
+
+.hero-about-wrapper > *:last-child {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  will-change: opacity;
+  overflow-y: auto;
+}
+
