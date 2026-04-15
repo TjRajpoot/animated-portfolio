@@ -83,8 +83,7 @@ export default function TextRevealHero() {
 
       // Phase 3 (25–35%): Lime background floods in — no fontSize keeps GPU-only compositing path
       tl.to(text, {
-        backgroundColor: "#BFFF00",
-        lineHeight: 1, duration: 0.10, ease: "power3.inOut"
+        backgroundColor: "#BFFF00", duration: 0.10, ease: "power3.inOut"
       }, 0.25);
 
       // Phase 4 (30–37%): Lime overlay fills screen — overlaps with scale so there's no dead zone
@@ -96,8 +95,8 @@ export default function TextRevealHero() {
       // Phase 5 (20–34%): Content fades in (single declaration — duplicate removed)
       tl.fromTo(
         content,
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1, duration: 0.14, ease: "power2.out" },
+        { opacity: 0, scale: 0.8, y: 20 },
+        { opacity: 1, scale: 1, y: 20, duration: 0.14, ease: "power2.out" },
         0.20
       );
 
@@ -114,7 +113,7 @@ export default function TextRevealHero() {
       position: "sticky",
       top: 0,
       height: "100svh",
-      width: "100%",   // ✅ FIXED
+      width: "100%",
       overflow: "hidden"
     }} id="intro">
       <h1 ref={textRef} className="reveal-text">Tanuj.</h1>
