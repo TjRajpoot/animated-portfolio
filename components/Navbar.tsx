@@ -140,6 +140,8 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
+      </div>
+      <div className="fixed top-0 right-[51%] md:right-0">
         <button
           id="mobile-menu-btn"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -163,7 +165,6 @@ export default function Navbar() {
           />
         </button>
       </div>
-
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
