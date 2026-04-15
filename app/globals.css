@@ -123,7 +123,7 @@ body {
 }
 
 .reveal-text {
-  font-size: clamp(5rem, 20vw, 16rem);
+  font-size: clamp(3rem, 18vw, 16rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -132,11 +132,12 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  will-change: transform;
+  will-change: transform, opacity;
   user-select: none;
   z-index: 2;
   position: relative;
   font-family: var(--font-sans);
+  transform-origin: center center;
 }
 
 .lime-overlay {

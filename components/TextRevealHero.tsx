@@ -31,14 +31,19 @@ export default function TextRevealHero() {
 
       if (!section || !text || !limeOverlay || !content || !about) return;
 
+      // Responsive values based on screen width
+      const isMobile = window.innerWidth < 768;
+      const finalFontSize = isMobile ? "18vw" : "30vw";
+      const initialScale = isMobile ? 0.28 : 0.1667;
+      const scrollLength = isMobile ? "+=250%" : "+=400%";
+
       // Initialize text state for vertical reveal.
-      // Inverse scale trick: font-size is already at its final "zoomed" size so the
-      // browser rasterizes full-resolution glyphs from the start. We scale DOWN to 1/6
-      // so it looks small on screen, then animate back to scale(1). Text is never
-      // upscaled — eliminating staircase aliasing on diagonal letter edges.
+      // Inverse scale trick: font-size is set at its final "zoomed" size so the
+      // browser rasterizes full-resolution glyphs. We scale DOWN so it looks
+      // small initially, then animate back to scale(1). No upscaling = no aliasing.
       gsap.set(text, {
-        fontSize: "30vw",
-        scale: 0.1667,          // 1/6 — visually matches original small appearance
+        fontSize: finalFontSize,
+        scale: initialScale,
         backgroundImage: "linear-gradient(to top, #BFFF00 50%, #aaa4a4ff 50%)",
         backgroundSize: "100% 200%",
         backgroundPosition: "0% 0%",
@@ -49,7 +54,7 @@ export default function TextRevealHero() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=400%",
+          end: scrollLength,
           scrub: true,
           pin: true,
           anticipatePin: 1,
@@ -106,7 +111,7 @@ export default function TextRevealHero() {
 
   return (
     <section ref={sectionRef} className="text-reveal-hero" id="intro">
-      <h1 ref={textRef} className="reveal-text text-4xl">Tanuj.</h1>
+      <h1 ref={textRef} className="reveal-text">Tanuj.</h1>
       <div ref={limeOverlayRef} className="lime-overlay" />
       <div ref={contentRef} className="reveal-content">
         <p className="reveal-role">Full Stack Developer</p>
