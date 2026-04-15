@@ -20,11 +20,11 @@ export default function Navbar() {
   const underlineRef = useRef<HTMLSpanElement | null>(null);
 
   // ── Scroll shadow ──
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => setIsScrolled(window.scrollY > 50);
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   // ── Single active-section detector + underline sync ──
   // Uses getBoundingClientRect which works correctly with GSAP pinned sections

@@ -31,22 +31,17 @@ export default function TextRevealHero() {
 
       if (!section || !text || !limeOverlay || !content || !about) return;
 
-      // About starts invisible, fixed behind the hero
-      // gsap.set(about, {
-      //   position: "fixed",
-      //   top: 0,
-      //   left: 0,Z
-      //   right: 0,
-      //   bottom: 0,
-      //   opacity: 0,
-      //   zIndex: 0,
-      // });
-
-      // Initialize text state for vertical reveal
+      // Initialize text state for vertical reveal.
+      // Inverse scale trick: font-size is already at its final "zoomed" size so the
+      // browser rasterizes full-resolution glyphs from the start. We scale DOWN to 1/6
+      // so it looks small on screen, then animate back to scale(1). Text is never
+      // upscaled — eliminating staircase aliasing on diagonal letter edges.
       gsap.set(text, {
+        fontSize: "30vw",
+        scale: 0.1667,          // 1/6 — visually matches original small appearance
         backgroundImage: "linear-gradient(to top, #BFFF00 50%, #aaa4a4ff 50%)",
         backgroundSize: "100% 200%",
-        backgroundPosition: "0% 0%",   // start from top now
+        backgroundPosition: "0% 0%",
         backgroundColor: "transparent",
       });
 
@@ -71,36 +66,29 @@ export default function TextRevealHero() {
               clearProps: "position,top,left,right,bottom,zIndex",
             });
           },
-          // onEnterBack: () => {
-          //   // Re-fix About when scrolling back into the hero
-          //   gsap.set(about, {
-          //     position: "fixed",
-          //     top: 0,
-          //     left: 0,
-          //     right: 0,
-          //     bottom: 0,
-          //     zIndex: 0,
-          //   });
-          // },
         },
       });
 
       // Phase 1 (0–15%): Vertical Reveal (White → Lime)
       tl.to(text, { backgroundPosition: "0% 100%", duration: 0.15, ease: "none" }, 0);
 
-      // Phase 2 (15–35%): Scale up
-      tl.to(text, { scale: 6, duration: 0.20, ease: "power2.inOut" }, 0.15);
+      // Phase 2 (15–35%): Animate to scale(1) — text was initialized at 0.1667 of 30vw,
+      // so this is purely downscale-to-natural. No upscaling = no staircase aliasing.
+      tl.to(text, { scale: 1, duration: 0.20, ease: "power2.inOut" }, 0.15);
 
-      // Phase 3 (35–55%): Red → Lime + massive scale
+      // Phase 3 (25–35%): Lime background floods in — no fontSize keeps GPU-only compositing path
       tl.to(text, {
-        backgroundColor: "#BFFF00", fontSize: "30vw",
+        backgroundColor: "#BFFF00",
         lineHeight: 1, duration: 0.10, ease: "power3.inOut"
       }, 0.25);
 
-      // Phase 4 (53–60%): Lime overlay fills
+      // Phase 4 (30–37%): Lime overlay fills screen — overlaps with scale so there's no dead zone
       tl.to(limeOverlay, { opacity: 1, duration: 0.07, ease: "power1.inOut" }, 0.30);
 
-      // Phase 5 (58–72%): Content fades in
+      // Phase 4b: Fade text out in exact sync with overlay — eliminates dark letter-edge bleed-through
+      tl.to(text, { opacity: 0, duration: 0.07, ease: "power1.inOut" }, 0.30);
+
+      // Phase 5 (20–34%): Content fades in (single declaration — duplicate removed)
       tl.fromTo(
         content,
         { opacity: 0, scale: 0.8 },
@@ -108,17 +96,8 @@ export default function TextRevealHero() {
         0.20
       );
 
-      // Phase 5 (58–72%): Content fades in
-      tl.fromTo(
-        content,
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1, duration: 0.14, ease: "power2.out" },
-        0.20
-      );
-
-      // Phase 6 (75–100%): Crossfade — hero out, about in
-      // Enlarge content massively just like "TANUJ" text
-      tl.to(section, { opacity: 0, duration: 0.25, ease: "power2.inOut" }, 0.42);
+      // Phase 6: Crossfade — hero fades out immediately after overlay fills (gap closed: 0.42 → 0.37)
+      tl.to(section, { opacity: 0, duration: 0.25, ease: "power2.inOut" }, 0.37);
       tl.to(about, { opacity: 1, duration: 0.25, ease: "power2.inOut" }, 0.30);
     }, sectionRef);
 
@@ -127,7 +106,7 @@ export default function TextRevealHero() {
 
   return (
     <section ref={sectionRef} className="text-reveal-hero" id="intro">
-      <h1 ref={textRef} className="reveal-text">Tanuj.</h1>
+      <h1 ref={textRef} className="reveal-text text-4xl">Tanuj.</h1>
       <div ref={limeOverlayRef} className="lime-overlay" />
       <div ref={contentRef} className="reveal-content">
         <p className="reveal-role">Full Stack Developer</p>
