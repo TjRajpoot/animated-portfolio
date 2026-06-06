@@ -85,13 +85,23 @@ export default function ContactSection() {
                   href={link.href}
                   target="_blank"
                   whileHover={{ scale: 1.05 }}
-                  className="relative p-3 md:p-5 rounded-2xl border border-border bg-surface 
-                transition-all duration-500 hover:border-accent/40 
-                hover:shadow-[0_10px_40px_rgba(0,255,150,0.15)]"
+                  className="flex flex-col items-center justify-center text-center
+  p-5 rounded-2xl border border-border bg-surface
+  transition-all duration-500 hover:border-accent/40
+  hover:shadow-[0_10px_40px_rgba(0,255,150,0.15)]"
                 >
-                  <div className="text-xl md:text-2xl mb-2">{link.icon}</div>
-                  <p className="font-semibold text-sm md:text-base">{link.name}</p>
-                  <p className="text-[10px] md:text-xs text-muted">{link.description}</p>
+                  <div className="text-2xl md:text-3xl flex-shrink-0">
+                    {link.icon}
+                  </div>
+
+                  <div>
+                    <p className="font-semibold text-sm md:text-base">
+                      {link.name}
+                    </p>
+                    <p className="text-[10px] md:text-xs text-muted">
+                      {link.description}
+                    </p>
+                  </div>
                 </motion.a>
               ))}
             </div>

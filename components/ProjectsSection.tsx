@@ -6,17 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * ProjectsSection — Cinematic "Camera Zoom Timeline"
- *
- * Simulates a camera flying through 3D space. Each project card sits at a
- * different depth. As the user scrolls, the camera advances along the Z axis,
- * bringing each project into sharp focus before it flies past the viewport.
- *
- * Technique: perspective container + per-card GSAP transforms driven by
- * ScrollTrigger progress. Snap scrolling locks each project in centre view.
- */
-
 interface Project {
   id: number;
   link: string;
@@ -68,6 +57,19 @@ const PROJECTS: Project[] = [
     ],
     tech: ["Flutter", "Dart", "Hive"],
     image: "https://images.unsplash.com/photo-1607706189992-eae578626c86?auto=format&fit=crop&w=800&q=80",
+  }, {
+    id: 4,
+    link: "https://midnight-ocean-chat.vercel.app",
+    title: "Live Chat App",
+    description:
+      "A real-time messaging application with instant message delivery and an intuitive user interface.",
+    bullets: [
+      "Built real-time communication features using Socket.io",
+      "Developed a responsive and modern UI with React and Tailwind CSS",
+      "Implemented secure user authentication and session management",
+    ],
+    tech: ["React", "Tailwind", "Node.js", "Socket.io", "Express"],
+    image: "/chat.png",
   },
 ];
 
@@ -236,7 +238,7 @@ export default function ProjectsSection() {
                 <h3 className="text-2xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-4 md:mb-6">
                   {project.title}
                 </h3>
-                <a href={project.link} target="_blank" className="text-accent px-4 py-2 text-xs font-mono hover:text-white hover:font-bold">Visit live</a>
+                <a href={project.link} target="_blank" className="text-accent px-4 py-2 text-xs font-mono hover:cursor-pointer hover:text-white hover:font-bold">Visit live</a>
 
                 {/* Description */}
                 <p className="text-white/50 text-sm md:text-xl leading-relaxed mb-4 md:mb-8 max-w-2xl mt-3">
