@@ -32,22 +32,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "MERN Auth System",
-    link: "https://mern-front-pearl.vercel.app/login",
-    description:
-      "A secure authentication system with OTP-based verification and modern responsive UI.",
-    bullets: [
-      "Built secure authentication using JWT & Nodemailer",
-      "Implemented OTP-based login flow",
-      "Developed responsive UI using React + Tailwind",
-    ],
-    tech: ["React", "Tailwind", "Node.js", "JWT", "Nodemailer"],
-    image: "/mern-auth.png",
-  },
-  {
-    id: 3,
-    title: "Money Manager App",
     link: "https://www.linkedin.com/in/tanuj-singh-rajpoot-154585338/details/projects/",
+    title: "Money Manager App",
     description:
       "A mobile expense tracking app with offline persistence and intuitive data visualization.",
     bullets: [
@@ -58,9 +44,9 @@ const PROJECTS: Project[] = [
     tech: ["Flutter", "Dart", "Hive"],
     image: "https://images.unsplash.com/photo-1607706189992-eae578626c86?auto=format&fit=crop&w=800&q=80",
   }, {
-    id: 4,
-    link: "https://midnight-ocean-chat.vercel.app",
+    id: 3,
     title: "Live Chat App",
+    link: "https://midnight-ocean-chat.vercel.app",
     description:
       "A real-time messaging application with instant message delivery and an intuitive user interface.",
     bullets: [
@@ -99,6 +85,7 @@ export default function ProjectsSection() {
           y: 0,
           rotateX: 0,
           filter: "blur(0px)",
+          pointerEvents: "auto",
         });
       } else {
         gsap.set(card, {
@@ -108,6 +95,7 @@ export default function ProjectsSection() {
           y: 60,
           rotateX: 6,
           filter: "blur(18px)",
+          pointerEvents: "none",
         });
       }
     });
@@ -166,6 +154,7 @@ export default function ProjectsSection() {
               rotateX,
               filter: `blur(${Math.max(0, Math.min(22, blur))}px)`,
               zIndex: Math.round((1 - absDistance) * 100),
+              pointerEvents: absDistance < 0.3 ? "auto" : "none",
             });
           });
 
